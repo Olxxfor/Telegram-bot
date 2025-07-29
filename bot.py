@@ -36,10 +36,15 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Load environment variables
+from dotenv import load_dotenv
+load_dotenv()
+
 # Bot configuration
 BOT_TOKEN = os.getenv('BOT_TOKEN', 'YOUR_BOT_TOKEN_HERE')
-MAX_FILE_SIZE = 50 * 1024 * 1024  # 50MB limit
-TEMP_DIR = tempfile.mkdtemp()
+ADMIN_USER_ID = int(os.getenv('ADMIN_USER_ID', '0')) if os.getenv('ADMIN_USER_ID') else None
+MAX_FILE_SIZE = int(os.getenv('MAX_FILE_SIZE', str(50 * 1024 * 1024)))  # 50MB limit
+TEMP_DIR = os.getenv('TEMP_DIR', tempfile.mkdtemp())
 
 # Supported conversions
 SUPPORTED_CONVERSIONS = {
@@ -225,6 +230,12 @@ class TelegramBot:
         self.application.add_handler(CommandHandler("formats", self.formats_command))
         self.application.add_handler(CommandHandler("stats", self.stats_command))
         
+        # Admin commands
+        if ADMIN_USER_ID:
+            self.application.add_handler(CommandHandler("admin", self.admin_command))
+            self.application.add_handler(CommandHandler("users", self.users_command))
+            self.application.add_handler(CommandHandler("broadcast", self.broadcast_command))
+        
         # Message handlers
         self.application.add_handler(MessageHandler(filters.Document.ALL, self.handle_document))
         self.application.add_handler(MessageHandler(filters.PHOTO, self.handle_photo))
@@ -360,6 +371,103 @@ Output: MP3, WAV, OGG
         """
         
         await update.message.reply_text(stats_text, parse_mode='Markdown')
+    
+    async def admin_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Handle /admin command - Admin only"""
+        user_id = update.effective_user.id
+        
+        if user_id != ADMIN_USER_ID:
+            await update.message.reply_text("❌ Perintah ini hanya untuk admin.")
+            return
+        
+        total_users = len(self.user_sessions)
+        total_conversions = sum(session.get('conversions', 0) for session in self.user_sessions.values())
+        
+        admin_text = f"""
+🔧 **Panel Admin Bot**
+
+📊 **Statistik Global:**
+👥 Total Users: {total_users}
+🔄 Total Conversions: {total_conversions}
+💾 Session Active: {len([s for s in self.user_sessions.values() if s.get('file_obj')])}
+
+**Perintah Admin:**
+/users - Daftar pengguna aktif
+/broadcast <message> - Kirim pesan ke semua user
+/admin - Panel admin ini
+
+**Status System:**
+🟢 Bot Status: Running
+💻 Memory Usage: Normal
+🌐 Network: Connected
+        """
+        
+        await update.message.reply_text(admin_text, parse_mode='Markdown')
+    
+    async def users_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Handle /users command - Admin only"""
+        user_id = update.effective_user.id
+        
+        if user_id != ADMIN_USER_ID:
+            await update.message.reply_text("❌ Perintah ini hanya untuk admin.")
+            return
+        
+        if not self.user_sessions:
+            await update.message.reply_text("📭 Belum ada pengguna yang menggunakan bot.")
+            return
+        
+        users_text = "👥 **Daftar Pengguna Bot:**\n\n"
+        for uid, session in list(self.user_sessions.items())[:10]:  # Show max 10 users
+            conversions = session.get('conversions', 0)
+            last_conv = session.get('last_conversion', 'Never')
+            users_text += f"🆔 `{uid}` - {conversions} konversi - Last: {last_conv}\n"
+        
+        if len(self.user_sessions) > 10:
+            users_text += f"\n... dan {len(self.user_sessions) - 10} pengguna lainnya."
+        
+        await update.message.reply_text(users_text, parse_mode='Markdown')
+    
+    async def broadcast_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Handle /broadcast command - Admin only"""
+        user_id = update.effective_user.id
+        
+        if user_id != ADMIN_USER_ID:
+            await update.message.reply_text("❌ Perintah ini hanya untuk admin.")
+            return
+        
+        if not context.args:
+            await update.message.reply_text(
+                "📢 **Cara menggunakan broadcast:**\n"
+                "`/broadcast Pesan yang ingin dikirim ke semua user`"
+            )
+            return
+        
+        message = ' '.join(context.args)
+        sent_count = 0
+        failed_count = 0
+        
+        await update.message.reply_text("📤 Mengirim broadcast...")
+        
+        for uid in self.user_sessions.keys():
+            try:
+                await context.bot.send_message(
+                    chat_id=uid,
+                    text=f"📢 **Pesan dari Admin:**\n\n{message}",
+                    parse_mode='Markdown'
+                )
+                sent_count += 1
+            except Exception as e:
+                failed_count += 1
+                logger.error(f"Broadcast failed for user {uid}: {e}")
+        
+        result_text = f"""
+📊 **Hasil Broadcast:**
+✅ Berhasil: {sent_count}
+❌ Gagal: {failed_count}
+📝 Pesan: "{message[:50]}..."
+        """
+        
+        await update.message.reply_text(result_text, parse_mode='Markdown')
     
     async def handle_document(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Handle document files"""
@@ -561,17 +669,40 @@ Output: MP3, WAV, OGG
     def run(self):
         """Start the bot"""
         logger.info("Starting Telegram File Converter Bot...")
-        self.application.run_polling()
+        try:
+            # Start the bot
+            self.application.run_polling()
+        except Exception as e:
+            logger.error(f"Error running bot: {e}")
+            raise
 
 def main():
     """Main function"""
+    print("🤖 Starting Telegram File Converter Bot...")
+    print(f"📊 Max file size: {MAX_FILE_SIZE//1024//1024}MB")
+    print(f"📁 Temp directory: {TEMP_DIR}")
+    
     if BOT_TOKEN == 'YOUR_BOT_TOKEN_HERE':
-        print("❌ Please set your BOT_TOKEN in environment variables or update the code!")
+        print("❌ Please set your BOT_TOKEN in .env file!")
         print("💡 Get your token from @BotFather on Telegram")
+        print("📝 Edit .env file and add: BOT_TOKEN=your_token_here")
         return
     
-    bot = TelegramBot()
-    bot.run()
+    if ADMIN_USER_ID:
+        print(f"👑 Admin user ID: {ADMIN_USER_ID}")
+    else:
+        print("⚠️  No admin user configured")
+    
+    print("🚀 Bot is starting...")
+    
+    try:
+        bot = TelegramBot()
+        bot.run()
+    except KeyboardInterrupt:
+        print("\n⏹️  Bot stopped by user")
+    except Exception as e:
+        print(f"❌ Error starting bot: {e}")
+        logger.error(f"Bot startup error: {e}")
 
 if __name__ == '__main__':
     main()

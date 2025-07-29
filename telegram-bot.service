@@ -1,0 +1,15 @@
+[Unit]
+Description=Telegram File Converter Bot
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/workspace
+Environment=PATH=/workspace/venv/bin
+ExecStart=/workspace/venv/bin/python bot.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
