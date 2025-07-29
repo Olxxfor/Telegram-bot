@@ -13,3 +13,9 @@ Traceback (most recent call last):
     await update.message.reply_text(help_text, parse_mode='Markdown')
           ^^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'NoneType' object has no attribute 'reply_text'
+2025-07-29 01:00:24,833 - telegram.ext._application - INFO - Application is stopping. This might take a moment.
+2025-07-29 01:00:24,833 - telegram.ext._application - INFO - Application.stop() complete
+🤖 Starting Simple Telegram File Converter Bot...
+🔑 Bot Token: 7882343563...
+👑 Admin ID: 8141075788
+🚀 Bot starting...
