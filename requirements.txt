@@ -1,0 +1,21 @@
+# Telegram Bot Framework
+python-telegram-bot==20.7
+
+# Image Processing
+Pillow==10.1.0
+
+# PDF Processing
+PyPDF2==3.0.1
+reportlab==4.0.7
+
+# Document Processing
+python-docx==1.1.0
+
+# Archive Processing
+rarfile==4.1
+
+# System utilities
+asyncio-subprocess==0.1.0
+
+# Optional: Video/Audio processing (requires ffmpeg installed)
+# ffmpeg-python==0.2.0
