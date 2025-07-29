@@ -284,3 +284,10 @@ Traceback (most recent call last):
   File "/workspace/venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 328, in _request_wrapper
     raise BadRequest(message)
 telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 136
+2025-07-29 01:31:08,276 - telegram.ext._application - INFO - Application is stopping. This might take a moment.
+2025-07-29 01:31:08,276 - telegram.ext._application - INFO - Application.stop() complete
+🚀 Starting Enhanced TXT/VCF/XLS Converter Bot...
+✅ Enhanced Bot started!
+👑 Admin ID: 8141075788
+🎯 Features: Custom TXT→VCF, VCF→TXT, XLS→VCF
+📝 Custom: Filename, Contact name, Split count, Start number
