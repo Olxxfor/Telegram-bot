@@ -1,301 +1,178 @@
-# 🤖 Telegram File Converter Bot
+# Contact Manager System
 
-Bot Telegram yang komprehensif untuk mengkonversi berbagai format file dengan mudah dan cepat.
+Sistem manajemen kontak lengkap dengan fitur konversi, pembagian file, dan sistem admin premium.
 
-## ✨ Fitur Utama
+## Fitur Utama
 
-### 📸 Konversi Gambar
-- **Input**: JPG, JPEG, PNG, BMP, GIF, TIFF, WebP, ICO
-- **Output**: JPG, PNG, PDF, WebP, BMP, GIF, ICO
-- Mempertahankan kualitas gambar original
-- Dukungan transparansi untuk PNG
-- Konversi batch untuk multiple gambar
+### 🔄 Konversi File
+- **VCF to TXT**: Konversi file VCF ke format TXT
+- **XLS to VCF**: Konversi file Excel ke format VCF
+- **TXT to VCF**: Konversi file TXT ke format VCF
 
-### 📄 Konversi Dokumen
-- **Input**: TXT, DOCX, PDF, RTF
-- **Output**: PDF, TXT, DOCX
-- Ekstraksi teks dari PDF
-- Konversi dokumen Word ke PDF
-- Format teks yang rapi
+### 📁 Manajemen File
+- **Pecah File**: Membagi file besar menjadi beberapa file kecil
+- **Gabungkan File**: Menggabungkan beberapa file menjadi satu
+- **Rename File & Kontak**: Mengubah nama file dan kontak di dalamnya
 
-### 🗜️ Pengelolaan Arsip
-- **Input**: ZIP, RAR, 7Z, TAR, GZ
-- **Output**: ZIP (ekstraksi otomatis)
-- Ekstraksi file arsip
-- Kompres multiple file ke ZIP
+### 🔍 Deteksi & Validasi
+- **Deteksi Duplikat**: Otomatis mendeteksi kontak duplikat (Premium)
+- **Validasi Format**: Memastikan format file sesuai standar
 
-### 🎥 Konversi Video
-- **Input**: MP4, AVI, MKV, MOV, WMV, FLV, WebM
-- **Output**: MP4, AVI, GIF, WebM
-- Konversi video ke GIF animasi
-- Optimasi ukuran file
-- Dukungan berbagai codec
+### 👨‍💼 Sistem Admin
+- **Login Admin**: Sistem autentikasi admin
+- **Manajemen User Premium**: Tambah, edit, hapus user premium
+- **Deteksi Expired**: Otomatis mendeteksi user yang expired
+- **Statistik Sistem**: Monitoring penggunaan sistem
 
-### 🎵 Konversi Audio
-- **Input**: MP3, WAV, OGG, AAC, FLAC, M4A, WMA
-- **Output**: MP3, WAV, OGG, AAC
-- Konversi format audio populer
-- Pengaturan bitrate dan sample rate
-- Kompresi audio lossless/lossy
+## Instalasi
 
-## 🚀 Instalasi Cepat
-
-### 1. Clone Repository
+### 1. Install Dependencies
 ```bash
-git clone https://github.com/username/telegram-file-converter-bot.git
-cd telegram-file-converter-bot
-```
-
-### 2. Jalankan Setup Script (Recommended)
-```bash
-chmod +x setup.sh
-./setup.sh
-```
-
-### 3. Manual Setup
-```bash
-# Install dependencies
-sudo apt-get update
-sudo apt-get install -y python3 python3-pip ffmpeg unrar p7zip-full
-
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install Python packages
 pip install -r requirements.txt
 ```
 
-### 4. Konfigurasi Bot Token
-1. Buat bot baru di [@BotFather](https://t.me/BotFather)
-2. Dapatkan token bot Anda
-3. Edit file `.env`:
+### 2. Setup Database
+Database akan otomatis dibuat saat pertama kali menjalankan aplikasi.
+
+### 3. Login Admin Default
+- Username: `admin`
+- Password: `admin123`
+
+## Cara Penggunaan
+
+### 1. Menjalankan Contact Manager
 ```bash
-BOT_TOKEN=YOUR_BOT_TOKEN_HERE
+python contact_manager.py
 ```
 
-### 5. Jalankan Bot
+### 2. Menjalankan Admin Panel
 ```bash
-# Menggunakan startup script
-./start_bot.sh
-
-# Atau manual
-source venv/bin/activate
-python bot.py
+python admin_panel.py
 ```
 
-## 📋 Requirements
+### 3. Format Pembagian File
+Gunakan format: `OLXX-REXX-81-50`
+- `OLXX`: Nama kontak (bisa ditambah angka)
+- `REXX`: Nama file (bisa ditambah angka)
+- `81`: Urutan file mulai
+- `50`: Jumlah kontak per file
 
-### System Requirements
-- **OS**: Linux, Ubuntu 18.04+ (Recommended)
-- **Python**: 3.8 atau lebih tinggi
-- **RAM**: Minimal 512MB (1GB+ recommended)
-- **Storage**: 1GB free space untuk temporary files
-- **Network**: Koneksi internet stabil
+**Contoh:**
+- Input: `OLXX-REXX-81-50`
+- Output: 
+  - `OLXX-81.vcf` (kontak 1-50)
+  - `OLXX-82.vcf` (kontak 51-100)
+  - dst.
 
-### Dependencies
-- `python-telegram-bot>=20.7`: Framework bot Telegram
-- `Pillow>=10.1.0`: Image processing
-- `PyPDF2>=3.0.1`: PDF manipulation
-- `reportlab>=4.0.7`: PDF generation
-- `python-docx>=1.1.0`: Word document processing
-- `rarfile>=4.1`: RAR archive support
-- `ffmpeg`: Video/audio conversion (system package)
+## Fitur Premium
 
-## 🎯 Cara Penggunaan
+### Fitur yang Memerlukan Premium:
+- Deteksi duplikat otomatis
+- Operasi bulk (mass operations)
+- Export advanced
+- Tidak ada batasan jumlah kontak
 
-### Perintah Bot
-- `/start` - Memulai bot dan menampilkan menu utama
-- `/help` - Panduan lengkap penggunaan bot
-- `/formats` - Daftar format file yang didukung
-- `/stats` - Statistik penggunaan personal
+### Fitur Free:
+- Konversi dasar (VCF ↔ TXT, XLS → VCF)
+- Pembagian file (maksimal 1000 kontak)
+- Merge file (maksimal 5 file)
 
-### Langkah Konversi
-1. **Kirim File**: Upload file yang ingin dikonversi
-2. **Pilih Format**: Bot akan menampilkan opsi konversi yang tersedia
-3. **Tunggu Proses**: Bot akan memproses file Anda
-4. **Download**: Unduh file hasil konversi
+## Struktur Database
 
-### Batasan
-- **Ukuran File**: Maksimal 50MB per file
-- **Waktu Konversi**: Maksimal 5 menit per file
-- **Rate Limit**: 10 konversi per jam, 50 per hari
-- **Concurrent**: Maksimal 3 konversi bersamaan
+### Tabel Admin
+```sql
+CREATE TABLE admins (
+    id INTEGER PRIMARY KEY,
+    username TEXT UNIQUE,
+    password_hash TEXT,
+    role TEXT,
+    created_date TEXT
+);
+```
 
-## ⚙️ Konfigurasi
+### Tabel Premium Users
+```sql
+CREATE TABLE premium_users (
+    id INTEGER PRIMARY KEY,
+    username TEXT UNIQUE,
+    email TEXT,
+    premium_expiry TEXT,
+    features TEXT,
+    created_date TEXT
+);
+```
 
-### Environment Variables
+## Contoh Penggunaan
+
+### 1. Konversi VCF ke TXT
+```
+Menu: 2
+File VCF: contacts.vcf
+Output: contacts.txt
+```
+
+### 2. Pembagian File
+```
+Menu: 4
+File input: contacts.txt
+Format: OLXX-REXX-81-50
+Output: OLXX-81.vcf, OLXX-82.vcf, dst.
+```
+
+### 3. Deteksi Duplikat
+```
+Menu: 7
+File: contacts.vcf
+Output: 
+- Total: 150
+- Unique: 145
+- Duplicates: 5
+```
+
+### 4. Admin - Tambah User Premium
+```
+Menu: 1
+Username: john_doe
+Email: john@example.com
+Duration: 30
+Features: duplicate_detection,bulk_operations
+```
+
+## File yang Dihasilkan
+
+### Contact Manager
+- `contact_manager.py` - Aplikasi utama
+- `contact_manager.db` - Database SQLite
+- `config.json` - Konfigurasi sistem
+
+### Admin Panel
+- `admin_panel.py` - Panel admin
+- `requirements.txt` - Dependencies
+
+## Keamanan
+
+- Password di-hash menggunakan SHA-256
+- Validasi input untuk mencegah SQL injection
+- Pengecekan permission untuk fitur premium
+- Logging aktivitas admin
+
+## Troubleshooting
+
+### Error: "Module not found"
 ```bash
-# Required
-BOT_TOKEN=your_telegram_bot_token
-
-# Optional
-ADMIN_USER_ID=your_telegram_user_id
-MAX_FILE_SIZE=52428800
-LOG_LEVEL=INFO
+pip install pandas openpyxl xlrd
 ```
 
-### config.py
-Customize bot behavior dengan mengedit `config.py`:
-- Supported formats
-- Quality settings
-- Rate limits
-- Messages (localization)
+### Error: "File not found"
+Pastikan file yang direferensikan ada di direktori yang sama.
 
-## 🔧 Advanced Setup
+### Error: "Permission denied"
+Pastikan folder memiliki permission write.
 
-### Sebagai System Service
-```bash
-# Copy service file
-sudo cp telegram-bot.service /etc/systemd/system/
+## Support
 
-# Enable and start service
-sudo systemctl enable telegram-bot
-sudo systemctl start telegram-bot
+Untuk bantuan lebih lanjut, silakan buat issue di repository ini.
 
-# Check status
-sudo systemctl status telegram-bot
-```
+## License
 
-### Docker Setup (Optional)
-```bash
-# Build image
-docker build -t telegram-converter-bot .
-
-# Run container
-docker run -d --name tg-bot \
-  -e BOT_TOKEN=your_token \
-  -v $(pwd)/data:/app/data \
-  telegram-converter-bot
-```
-
-## 📊 Monitoring & Logs
-
-### Logs Location
-- Bot logs: `logs/bot.log`
-- System logs: `journalctl -u telegram-bot`
-
-### Statistics
-Bot menyimpan statistik penggunaan:
-- Total konversi per user
-- Format konversi populer
-- Waktu rata-rata proses
-- Error rate
-
-## 🛠️ Development
-
-### Project Structure
-```
-telegram-file-converter-bot/
-├── bot.py              # Main bot application
-├── config.py           # Configuration settings
-├── requirements.txt    # Python dependencies
-├── setup.sh           # Automated setup script
-├── start_bot.sh       # Quick start script
-├── check_requirements.py # Dependency checker
-├── .env               # Environment variables
-├── logs/              # Log files
-├── temp/              # Temporary files
-├── data/              # User data & stats
-└── venv/              # Virtual environment
-```
-
-### Adding New Formats
-1. Update `SUPPORTED_FORMATS` in `config.py`
-2. Implement converter method in `FileConverter` class
-3. Add format detection logic
-4. Test thoroughly
-
-### Custom Messages
-Edit `MESSAGES` dict in `config.py` for localization atau custom text.
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**1. Bot tidak merespon**
-```bash
-# Check bot status
-systemctl status telegram-bot
-
-# Check logs
-tail -f logs/bot.log
-```
-
-**2. FFmpeg not found**
-```bash
-# Install ffmpeg
-sudo apt-get install ffmpeg
-
-# Verify installation
-ffmpeg -version
-```
-
-**3. Permission errors**
-```bash
-# Fix permissions
-chmod +x setup.sh start_bot.sh
-chown -R $USER:$USER /path/to/bot
-```
-
-**4. Module import errors**
-```bash
-# Check dependencies
-python check_requirements.py
-
-# Reinstall packages
-pip install -r requirements.txt --force-reinstall
-```
-
-## 📞 Support
-
-### Getting Help
-1. Check [Issues](https://github.com/username/repo/issues) for common problems
-2. Read documentation thoroughly
-3. Check logs for error messages
-4. Create new issue dengan detail lengkap
-
-### Reporting Bugs
-Include:
-- OS and Python version
-- Error logs
-- Steps to reproduce
-- Expected vs actual behavior
-
-## 🤝 Contributing
-
-1. Fork repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot) - Telegram Bot API wrapper
-- [Pillow](https://pillow.readthedocs.io/) - Image processing library
-- [FFmpeg](https://ffmpeg.org/) - Video/audio processing
-- [ReportLab](https://www.reportlab.com/) - PDF generation
-
-## 📈 Roadmap
-
-- [ ] Batch file processing
-- [ ] Cloud storage integration (Google Drive, Dropbox)
-- [ ] Web interface
-- [ ] Advanced video editing features
-- [ ] AI-powered image enhancement
-- [ ] Multiple language support
-- [ ] File preview generation
-- [ ] Webhook support for high-volume usage
-
----
-
-**⚡ Quick Start**: Run `./setup.sh` then edit `.env` with your bot token!
-
-**💡 Pro Tip**: Use `/stats` to monitor your usage and `/formats` to see all supported conversions.
-
-**🔒 Security**: Never share your bot token publicly. Use environment variables or secure config files.
+MIT License - Silakan gunakan untuk keperluan komersial maupun non-komersial.
