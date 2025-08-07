@@ -1,0 +1,9 @@
+nohup: ignoring input
+2025-07-29 01:00:59,400 - telegram.ext._application - INFO - Application started
+2025-07-29 01:01:25,264 - __main__ - ERROR - Conversion error: 8141075788
+2025-07-29 01:07:41,357 - telegram.ext._application - INFO - Application is stopping. This might take a moment.
+2025-07-29 01:07:41,358 - telegram.ext._application - INFO - Application.stop() complete
+🤖 Starting TXT/VCF/XLS Converter Bot...
+✅ Bot started successfully!
+👑 Admin ID: 8141075788
+📝 Supported: TXT, VCF, XLS, XLSX, CSV

@@ -1,0 +1,21 @@
+nohup: ignoring input
+2025-07-29 00:52:55,864 - telegram.ext._application - INFO - Application started
+2025-07-29 00:55:05,008 - telegram.ext._application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1063, in process_update
+    await coroutine
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/simple_bot.py", line 164, in handle_callback
+    await help_command(update, context)
+  File "/workspace/simple_bot.py", line 83, in help_command
+    await update.message.reply_text(help_text, parse_mode='Markdown')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'reply_text'
+2025-07-29 01:00:24,833 - telegram.ext._application - INFO - Application is stopping. This might take a moment.
+2025-07-29 01:00:24,833 - telegram.ext._application - INFO - Application.stop() complete
+🤖 Starting Simple Telegram File Converter Bot...
+🔑 Bot Token: 7882343563...
+👑 Admin ID: 8141075788
+🚀 Bot starting...

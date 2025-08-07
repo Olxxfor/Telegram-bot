@@ -1,0 +1,293 @@
+nohup: ignoring input
+2025-07-29 01:17:03,847 - telegram.ext._application - INFO - Application started
+2025-07-29 01:20:10,293 - telegram.ext._application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1063, in process_update
+    await coroutine
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/enhanced_bot.py", line 339, in handle_message
+    await handle_filename_input(update, session, text)
+  File "/workspace/enhanced_bot.py", line 371, in handle_filename_input
+    await update.message.reply_text(text, parse_mode='Markdown')
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_message.py", line 1006, in reply_text
+    return await self.get_bot().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<16 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 2596, in send_message
+    return await super().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<16 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 334, in decorator
+    result = await func(*args, **kwargs)  # skipcq: PYL-E1102
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 767, in send_message
+    return await self._send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<15 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 488, in _send_message
+    result = await super()._send_message(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<17 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 515, in _send_message
+    result = await self._post(
+             ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 422, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 306, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 453, in _do_post
+    return await request.post(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 165, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 328, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 136
+2025-07-29 01:20:32,350 - telegram.ext._application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1063, in process_update
+    await coroutine
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/enhanced_bot.py", line 343, in handle_message
+    await handle_perfile_input(update, session, text)
+  File "/workspace/enhanced_bot.py", line 426, in handle_perfile_input
+    await update.message.reply_text(text, parse_mode='Markdown')
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_message.py", line 1006, in reply_text
+    return await self.get_bot().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<16 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 2596, in send_message
+    return await super().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<16 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 334, in decorator
+    result = await func(*args, **kwargs)  # skipcq: PYL-E1102
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 767, in send_message
+    return await self._send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<15 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 488, in _send_message
+    result = await super()._send_message(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<17 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 515, in _send_message
+    result = await self._post(
+             ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 422, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 306, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 453, in _do_post
+    return await request.post(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 165, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 328, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 136
+2025-07-29 01:21:47,391 - telegram.ext._application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1063, in process_update
+    await coroutine
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/enhanced_bot.py", line 339, in handle_message
+    await handle_filename_input(update, session, text)
+  File "/workspace/enhanced_bot.py", line 371, in handle_filename_input
+    await update.message.reply_text(text, parse_mode='Markdown')
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_message.py", line 1006, in reply_text
+    return await self.get_bot().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<16 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 2596, in send_message
+    return await super().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<16 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 334, in decorator
+    result = await func(*args, **kwargs)  # skipcq: PYL-E1102
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 767, in send_message
+    return await self._send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<15 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 488, in _send_message
+    result = await super()._send_message(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<17 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 515, in _send_message
+    result = await self._post(
+             ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 422, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 306, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 453, in _do_post
+    return await request.post(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 165, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 328, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 137
+2025-07-29 01:22:20,960 - telegram.ext._application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1063, in process_update
+    await coroutine
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/enhanced_bot.py", line 343, in handle_message
+    await handle_perfile_input(update, session, text)
+  File "/workspace/enhanced_bot.py", line 426, in handle_perfile_input
+    await update.message.reply_text(text, parse_mode='Markdown')
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_message.py", line 1006, in reply_text
+    return await self.get_bot().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<16 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 2596, in send_message
+    return await super().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<16 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 334, in decorator
+    result = await func(*args, **kwargs)  # skipcq: PYL-E1102
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 767, in send_message
+    return await self._send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<15 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 488, in _send_message
+    result = await super()._send_message(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<17 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 515, in _send_message
+    result = await self._post(
+             ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 422, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 306, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/_bot.py", line 453, in _do_post
+    return await request.post(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 165, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 328, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 136
+2025-07-29 01:31:08,276 - telegram.ext._application - INFO - Application is stopping. This might take a moment.
+2025-07-29 01:31:08,276 - telegram.ext._application - INFO - Application.stop() complete
+🚀 Starting Enhanced TXT/VCF/XLS Converter Bot...
+✅ Enhanced Bot started!
+👑 Admin ID: 8141075788
+🎯 Features: Custom TXT→VCF, VCF→TXT, XLS→VCF
+📝 Custom: Filename, Contact name, Split count, Start number

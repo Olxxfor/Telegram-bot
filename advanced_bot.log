@@ -1,0 +1,54 @@
+nohup: ignoring input
+2025-07-29 01:08:05,140 - telegram.ext._application - INFO - Application started
+2025-07-29 01:08:10,220 - __main__ - ERROR - Conversion error: 8141075788
+2025-07-29 01:15:23,906 - telegram.ext._application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1063, in process_update
+    await coroutine
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/advanced_bot.py", line 145, in button_handler
+    await handle_split_process(query, session, data)
+          ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'handle_split_process' is not defined. Did you mean: 'handle_split_action'?
+2025-07-29 01:15:27,202 - telegram.ext._application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1063, in process_update
+    await coroutine
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/advanced_bot.py", line 145, in button_handler
+    await handle_split_process(query, session, data)
+          ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'handle_split_process' is not defined. Did you mean: 'handle_split_action'?
+2025-07-29 01:15:28,228 - telegram.ext._application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1063, in process_update
+    await coroutine
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/advanced_bot.py", line 145, in button_handler
+    await handle_split_process(query, session, data)
+          ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'handle_split_process' is not defined. Did you mean: 'handle_split_action'?
+2025-07-29 01:15:29,749 - telegram.ext._application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1063, in process_update
+    await coroutine
+  File "/workspace/venv/lib/python3.13/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/advanced_bot.py", line 145, in button_handler
+    await handle_split_process(query, session, data)
+          ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'handle_split_process' is not defined. Did you mean: 'handle_split_action'?
+2025-07-29 01:16:37,788 - telegram.ext._application - INFO - Application is stopping. This might take a moment.
+2025-07-29 01:16:37,788 - telegram.ext._application - INFO - Application.stop() complete
+🤖 Starting Advanced TXT/VCF/XLS Converter Bot...
+✅ Advanced Bot started!
+👑 Admin ID: 8141075788
+🔄 Features: Convert, Rename, Merge, Split
+📝 Supported: TXT, VCF, XLS, XLSX
